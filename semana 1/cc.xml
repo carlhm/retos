@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metrics generated="2015-11-22T14:23:08" pdepend="2.2.2" ahh="0" andc="0" calls="1" ccn="5" ccn2="5" cloc="12" clsa="0" clsc="0" eloc="52" fanout="0" leafs="0" lloc="25" loc="73" maxDIT="0" ncloc="61" noc="0" nof="1" noi="0" nom="0" nop="1" roots="0">
+  <files>
+    <file name="/var/www/local/retos/semana_1.php" loc="73" cloc="12" eloc="52" lloc="25" ncloc="61"/>
+  </files>
+  <package name="+global" noc="0" noi="0" nom="0" nof="1">
+    <function name="own_implode" start="47" end="71" ccn="5" ccn2="5" loc="25" cloc="0" eloc="21" lloc="11" ncloc="25" npath="10" hnt="26" hnd="83" hv="165.75102521502" hd="10.285714285714" hl="0.097222222222222" he="1704.8676879259" ht="94.71487155144" hb="0.047570662358143" hi="16.114683007016" mi="54.943979575572">
+      <file name="/var/www/local/retos/semana_1.php"/>
+    </function>
+  </package>
+</metrics>
