@@ -5,14 +5,13 @@ import string
 path_in  = sys.argv[1]
 path_out = sys.argv[2]
 
-fr           = open(path_in, 'rb')
-lines_in_csv = csv.reader(fr)
-out_csv      = ''
+fr       = open(path_in, 'rb')
+in_csv   = csv.reader(fr)
+out_csv  = ''
 
 pre_match = ['n00,n01,A\n','n10,n11,B\n']
 
-for index,line in enumerate(lines_in_csv) :
-
+for index,line in enumerate(in_csv) :
 
     if not line[0].isdigit() or not 'TRUE' in line :
         continue
