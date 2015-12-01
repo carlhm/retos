@@ -11,11 +11,11 @@ out_csv  = ''
 
 pre_match = ['c00,c01,A\n','c10,c11,B\n']               # cAx, cAy, A | cBx, cBy, B -> posibles lines in the output
 
-for index,line in enumerate(in_csv) :                   # read line csv "code,Ax,Ay,Bx,By"
+for index,line in enumerate(in_csv) :                   # read line csv "code,Ax,Ay,Bx,By" -> [code,Ax,Ay,Bx,By]
 
     if not line[0].isdigit() or not 'TRUE' in line :    # Valid line -> Code as number & True between commas
         continue
-                                                        # [code,Ax,Ay,Bx,By] -> [0,1,2,3,4] -> (-1) [0,1,2,3]
+                                                        # [code,Ax,Ay,Bx,By] -> [0|1,2,3,4] -> (-1) [0,1,2,3] (positions)
     true_pos = line.index('TRUE') - 1                   # find True into the array -> position
     ab       = int(true_pos > 1)                        # A: 0|1, B: 2|3 => >1 => false -> 0 (A), true -> 1 (B)
     xy       = true_pos % 2                             # x: 0|2, y: 1|3 => %2 => 0 (x), 1 (y)
