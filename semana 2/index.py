@@ -7,11 +7,9 @@ k = int(sys.argv[2])
 
 if k >= 0 and k <= ((n*(n-1))/2) and n >= 2 and n <= 50 :
 
-    p        = Poblacion(n, int(n/2)*10)
+    p        = Poblacion(n, k, int(n/2)*10)
     i        = 1
     h_inicio = datetime.now()
-
-    p.ordenar_por_fitness(k)
 
     print 'Individuos: '+ str(len(p._individuos))
     print 'G.'+ str(0) +" > "+ p._individuos[0]._genoma +" ("+ str(p._individuos[0].obtPares()) +")"

@@ -2,10 +2,10 @@ import random, string
 
 class Individuo :
 
-    def __init__ (self, length, genoma = '', choice = 'AB') :
+    def __init__ (self, genes, genoma = '', choice = 'AB') :
 
-        if length > len(genoma) :
-            self._genoma = ''.join([random.choice(choice) for _ in range(length)])
+        if genes > len(genoma) :
+            self._genoma = ''.join([random.choice(choice) for _ in range(genes)])
         else :
             self._genoma = genoma
 

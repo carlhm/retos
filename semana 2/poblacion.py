@@ -3,12 +3,14 @@ from individuo import Individuo
 
 class Poblacion :
 
-    def __init__ (self, n, individuos = 10, cruce = 0.30, mutacion = 0.5, torneo = 0.75) :
+    def __init__ (self, genes, fitness, individuos, cruce = 0.30, mutacion = 0.5, torneo = 0.75) :
         self._max_individuos = individuos
-        self._individuos     = [Individuo(n) for _ in range(individuos)]
+        self._individuos     = [Individuo(genes) for _ in range(individuos)]
         self._mutacion       = mutacion
         self._cruce          = cruce
         self._torneo         = torneo
+
+        self.ordenar_por_fitness(fitness)
 
     def cruce (self) :
         limite = len(self._individuos)
@@ -50,20 +52,20 @@ class Poblacion :
         self._individuos = []
         self._individuos = lista
 
-    def ordenar_por_fitness(self, k) :
-        self._individuos = sorted(self._individuos, key=lambda individuo: individuo.fitness(k))
+    def ordenar_por_fitness(self, fitness) :
+        self._individuos = sorted(self._individuos, key=lambda individuo: individuo.fitness(fitness))
 
-    def campeon (self, k) :
+    def campeon (self, fitness) :
         campeon = self._individuos[0]
 
-        if campeon.obtPares() == k :
+        if campeon.obtPares() == fitness :
             return True
         else :
             return False
 
-    def generacion (seld, k) :
-        
+    def generacion (seld, fitness) :
+
         seld.torneo()
         seld.cruce()
         seld.mutacion()
-        seld.ordenar_por_fitness(k)
+        seld.ordenar_por_fitness(fitness)
