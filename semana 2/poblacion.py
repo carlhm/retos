@@ -3,46 +3,51 @@ from individuo import Individuo
 
 class Poblacion :
 
-    def __init__ (self, n, individuos = 10, cruce = 0.5, mutacion = 0.5, torneo = 0.75) :
-        self._individuos = [Individuo(n) for _ in range(individuos)]
-        self._mutacion   = mutacion
-        self._cruce      = cruce
-        self._torneo     = torneo
+    def __init__ (self, n, individuos = 10, cruce = 0.30, mutacion = 0.5, torneo = 0.75) :
+        self._max_individuos = individuos
+        self._individuos     = [Individuo(n) for _ in range(individuos)]
+        self._mutacion       = mutacion
+        self._cruce          = cruce
+        self._torneo         = torneo
 
     def cruce (self) :
+        limite = len(self._individuos)
         conteo = int(len(self._individuos) * self._cruce)
         
         for i in range(conteo) :
-            posicion    = random.randint(0, len(self._individuos)-1)
+            posicion    = random.randint(0, limite - 1)
             individuo_1 = self._individuos[posicion]
-            posicion    = random.randint(0, len(self._individuos)-1)
+            posicion    = random.randint(0, limite - 1)
             individuo_2 = self._individuos[posicion]
 
-            hijo = individuo_1.hijo(individuo_2)
+            hijo = individuo_1.cruzar(individuo_2)
 
             self._individuos.append(hijo)
 
     def mutacion (self) :
-        conteo = int(len(self._individuos) * self._mutacion)
+        limite = len(self._individuos)
+        conteo = int(limite * self._mutacion)
         
         for i in range(conteo) :
-            posicion = random.randint(0, len(self._individuos)-1)
+            posicion = random.randint(0, limite - 1)
             self._individuos[posicion].mutar()
 
 
     def torneo (self) :
-        lista = []
-        i     = 0
+        limite = self._max_individuos
+        lista  = []
+        i      = 0
 
-        while len(lista) < len(self._individuos) :
+        while len(lista) < limite :
+
             elegir = random.random()
 
             if elegir < self._torneo :
                 lista.append(self._individuos[i])
                               
-            i = (0, i+1)[i < len(self._individuos)-1]
+            i = (0, i+1)[i < limite - 1]
 
-
+        self._individuos = []
         self._individuos = lista
 
     def ordenar_por_fitness(self, k) :
@@ -55,3 +60,10 @@ class Poblacion :
             return True
         else :
             return False
+
+    def generacion (seld, k) :
+        
+        seld.torneo()
+        seld.cruce()
+        seld.mutacion()
+        seld.ordenar_por_fitness(k)

@@ -2,8 +2,14 @@ import random, string
 
 class Individuo :
 
-    def __init__ (self, length, choice = 'AB') :
-        self._genoma = ''.join([random.choice(choice) for _ in range(length)])
+    def __init__ (self, length, genoma = '', choice = 'AB') :
+
+        if length > len(genoma) :
+            self._genoma = ''.join([random.choice(choice) for _ in range(length)])
+        else :
+            self._genoma = genoma
+
+        self._choice = choice
 
     def obtPares (self) :
         pair = 0
@@ -22,7 +28,7 @@ class Individuo :
 
         return pair
 
-    def hijo (self, pareja) :
+    def cruzar (self, pareja) :
         genoma_hijo = ''
         genoma_1    = self._genoma
         genoma_2    = pareja._genoma
@@ -34,8 +40,7 @@ class Individuo :
                 choice       = ''+ genoma_1[i] + genoma_2[i] +''
                 genoma_hijo += random.choice(choice)
 
-        hijo         = Individuo(len(self._genoma))
-        hijo._genoma = genoma_hijo
+        hijo = Individuo(len(self._genoma), genoma_hijo)
 
         return hijo
 
