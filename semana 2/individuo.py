@@ -10,6 +10,7 @@ class Individuo :
             self._genoma = genoma
 
         self._choice = choice
+        
 
     def obtPares (self) :
         pair = 0
@@ -28,6 +29,7 @@ class Individuo :
 
         return pair
 
+
     def cruzar (self, pareja) :
         genoma_hijo = ''
         genoma_1    = self._genoma
@@ -44,6 +46,7 @@ class Individuo :
 
         return hijo
 
+
     def mutar (self) :
         array    = list(self._genoma)
         posicion = random.randint(0, len(self._genoma)-1)
@@ -54,6 +57,7 @@ class Individuo :
             array[posicion] = 'A'
 
         self._genoma = "".join(array)
+
 
     def fitness (self, k) :
         pair = self.obtPares()

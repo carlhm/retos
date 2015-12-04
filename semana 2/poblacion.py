@@ -3,18 +3,15 @@ from individuo import Individuo
 
 class Poblacion :
 
-    def __init__ (self, genes, fitness, individuos, cruce = 0.30, mutacion = 0.5, torneo = 0.75) :
+    def __init__ (self, individuos, genes, fitness) :
         self._max_individuos = individuos
         self._individuos     = [Individuo(genes) for _ in range(individuos)]
-        self._mutacion       = mutacion
-        self._cruce          = cruce
-        self._torneo         = torneo
 
         self.ordenar_por_fitness(fitness)
 
-    def cruce (self) :
+    def cruce (self, coeficiente = 0.5) :
         limite = len(self._individuos)
-        conteo = int(len(self._individuos) * self._cruce)
+        conteo = int(len(self._individuos) * coeficiente)
         
         for i in range(conteo) :
             posicion    = random.randint(0, limite - 1)
@@ -26,16 +23,16 @@ class Poblacion :
 
             self._individuos.append(hijo)
 
-    def mutacion (self) :
+    def mutacion (self, coeficiente = 0.5) :
         limite = len(self._individuos)
-        conteo = int(limite * self._mutacion)
+        conteo = int(limite * coeficiente)
         
         for i in range(conteo) :
             posicion = random.randint(0, limite - 1)
             self._individuos[posicion].mutar()
 
 
-    def torneo (self) :
+    def torneo (self, coeficiente = 0.5) :
         limite = self._max_individuos
         lista  = []
         i      = 0
@@ -44,7 +41,7 @@ class Poblacion :
 
             elegir = random.random()
 
-            if elegir < self._torneo :
+            if elegir < coeficiente :
                 lista.append(self._individuos[i])
                               
             i = (0, i+1)[i < limite - 1]
@@ -63,9 +60,9 @@ class Poblacion :
         else :
             return False
 
-    def generacion (seld, fitness) :
+    def generacion (seld, fitness, coeficiente_cruce = 0.5, coeficiente_mutacion = 0.5, coeficiente_torneo = 0.5) :
 
-        seld.torneo()
-        seld.cruce()
-        seld.mutacion()
+        seld.torneo(coeficiente_torneo)
+        seld.cruce(torneo_cruce)
+        seld.mutacion(coeficiente_mutacion)
         seld.ordenar_por_fitness(fitness)

@@ -1,26 +1,43 @@
 import string, sys
-from datetime     import datetime
-from r2_poblacion import Poblacion
+from datetime  import datetime
+from poblacion import Poblacion
 
-n = int(sys.argv[1])
-k = int(sys.argv[2])
+def trazaGenerazion(poblacion, generacion_n) :
 
+    print 'G.'+ str(generacion_n) +" > "+ poblacion._individuos[0]._genoma +" ("+ str(poblacion._individuos[0].obtPares()) +")"
+
+# Entrada definida
+try :
+    sys.argv[1]
+except IndexError :
+    n = 0
+else :
+    n = int(sys.argv[1])
+try :
+    sys.argv[2]
+except IndexError :
+    k = -1
+else :
+    k = int(sys.argv[2])
+
+# Condiciones iniciales
 if k >= 0 and k <= ((n*(n-1))/2) and n >= 2 and n <= 50 :
 
-    p        = Poblacion(n, k, int(n/2)*10)
-    i        = 1
-    h_inicio = datetime.now()
+    individuos = int(n**1.65)
+    p          = Poblacion(individuos, n, k)
+    i          = 1
+    h_inicio   = datetime.now()
 
-    print 'Individuos: '+ str(len(p._individuos))
-    print 'G.'+ str(0) +" > "+ p._individuos[0]._genoma +" ("+ str(p._individuos[0].obtPares()) +")"
+    print 'Individuos: '+ str(individuos)
 
     while not p.campeon(k) :
 
-        p.generacion(k)
+        p.generacion(k, 0.30, 0.5, 0.75)
 
         i += 1
 
-        print 'G.'+ str(i-1) +" > "+ p._individuos[0]._genoma +" ("+ str(p._individuos[0].obtPares()) +")"
+
+    trazaGenerazion(p, i - 1)
 
     h_fin = datetime.now()
 
