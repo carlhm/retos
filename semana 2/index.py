@@ -4,7 +4,7 @@ from poblacion import Poblacion
 
 def trazaGenerazion(poblacion, generacion_n) :
 
-    print 'G.'+ str(generacion_n) +" > "+ poblacion._individuos[0]._genoma +" ("+ str(poblacion._individuos[0].obtPares()) +")"
+    print 'G.'+ str(generacion_n) +" > "+ poblacion.individuos[0].genoma +" ("+ str(poblacion.individuos[0].obtPares()) +")"
 
 # Entrada definida
 try :
@@ -24,7 +24,7 @@ else :
 if k >= 0 and k <= ((n*(n-1))/2) and n >= 2 and n <= 50 :
 
     individuos = int(n**1.65)
-    p          = Poblacion(individuos, n, k)
+    p          = Poblacion(individuos, n)
     i          = 1
     h_inicio   = datetime.now()
 
