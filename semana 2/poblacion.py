@@ -31,7 +31,7 @@ class Poblacion :
             self.individuos[posicion].mutar()
 
 
-    def torneo (self, fitnes, coeficiente = 0.5) :
+    def torneo (self, fitness, coeficiente = 0.5) :
         limite = self.max_individuos
         lista  = []
         i      = 0
@@ -64,9 +64,9 @@ class Poblacion :
             return False
 
 
-    def generacion (seld, fitness, coeficiente_cruce = 0.5, coeficiente_mutacion = 0.5, coeficiente_torneo = 0.5) :
+    def generacion (self, fitness, coeficiente_cruce = 0.5, coeficiente_mutacion = 0.5, coeficiente_torneo = 0.5) :
 
-        seld.torneo(fitness, coeficiente_torneo)
-        seld.cruce(torneo_cruce)
-        seld.mutacion(coeficiente_mutacion)
-        seld.ordenar_por_fitness(fitness)
+        self.torneo(fitness, coeficiente_torneo)
+        self.cruce(torneo_cruce)
+        self.mutacion(coeficiente_mutacion)
+        self.ordenar_por_fitness(fitness)
