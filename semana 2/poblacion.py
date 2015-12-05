@@ -67,6 +67,6 @@ class Poblacion :
     def generacion (self, fitness, coeficiente_cruce = 0.5, coeficiente_mutacion = 0.5, coeficiente_torneo = 0.5) :
 
         self.torneo(fitness, coeficiente_torneo)
-        self.cruce(torneo_cruce)
+        self.cruce(coeficiente_cruce)
         self.mutacion(coeficiente_mutacion)
         self.ordenar_por_fitness(fitness)
