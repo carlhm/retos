@@ -10,7 +10,7 @@ class Poblacion :
 
     def cruce (self, coeficiente = 0.5) :
         limite = len(self.individuos)
-        conteo = int(len(self.individuos) * coeficiente)
+        conteo = int(limite * coeficiente)
         
         for i in range(conteo) :
             posicion    = random.randint(0, limite - 1)
@@ -47,7 +47,6 @@ class Poblacion :
                               
             i = (0, i+1)[i < limite - 1]
 
-        self.individuos = []
         self.individuos = lista
 
 
