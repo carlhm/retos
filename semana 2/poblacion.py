@@ -4,11 +4,13 @@ from individuo import Individuo
 class Poblacion :
 
     def __init__ (self, individuos, genes) :
+
         self.max_individuos = individuos
         self.individuos     = [Individuo(genes) for _ in range(individuos)]
 
 
     def cruce (self, coeficiente = 0.5) :
+
         limite = len(self.individuos)
         conteo = int(limite * coeficiente)
         
@@ -21,8 +23,10 @@ class Poblacion :
             hijo = individuo_1.cruzar(individuo_2)
 
             self.individuos.append(hijo)
+            
 
     def mutacion (self, coeficiente = 0.5) :
+
         limite = len(self.individuos)
         conteo = int(limite * coeficiente)
         
@@ -32,6 +36,7 @@ class Poblacion :
 
 
     def torneo (self, fitness, coeficiente = 0.5) :
+
         limite = self.max_individuos
         lista  = []
         i      = 0
@@ -56,17 +61,15 @@ class Poblacion :
 
 
     def campeon (self, fitness) :
+
         campeon = self.individuos[0]
 
         if campeon.obtPares() == fitness :
             return True
         else :
             return False
+            
 
+    def obt_campeon (self) :
 
-    def generacion (self, fitness, coeficiente_cruce = 0.5, coeficiente_mutacion = 0.5, coeficiente_torneo = 0.5) :
-
-        self.torneo(fitness, coeficiente_torneo)
-        self.cruce(coeficiente_cruce)
-        self.mutacion(coeficiente_mutacion)
-        self.ordenar_por_fitness(fitness)
+        return self.individuos[0]

@@ -1,10 +1,7 @@
 import string, sys
-from datetime  import datetime
-from poblacion import Poblacion
-
-def trazaGenerazion(poblacion, generacion_n) :
-
-    print 'G.'+ str(generacion_n) +" > "+ poblacion.individuos[0].genoma +" ("+ str(poblacion.individuos[0].obtPares()) +")"
+from datetime   import datetime
+from poblacion  import Poblacion
+from generacion import Generacion
 
 # Entrada definida
 try :
@@ -25,19 +22,17 @@ if k >= 0 and k <= ((n*(n-1))/2) and n >= 2 and n <= 50 :
 
     individuos = int(n**1.65)
     p          = Poblacion(individuos, n)
-    i          = 1
+    g          = Generacion(p)
     h_inicio   = datetime.now()
 
     print 'Individuos: '+ str(individuos)
 
     while not p.campeon(k) :
 
-        p.generacion(k, 0.30, 0.5, 0.75)
-
-        i += 1
+        g.ronda(k, 0.30, 0.5, 0.75)
 
 
-    trazaGenerazion(p, i - 1)
+    g.traza()
 
     h_fin = datetime.now()
 
