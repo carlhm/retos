@@ -15,12 +15,12 @@ class Poblacion :
         conteo = int(limite * coeficiente)
         
         for i in range(conteo) :
+            
             posicion    = random.randint(0, limite - 1)
             individuo_1 = self.individuos[posicion]
             posicion    = random.randint(0, limite - 1)
             individuo_2 = self.individuos[posicion]
-
-            hijo = individuo_1.cruzar(individuo_2)
+            hijo        = individuo_1.cruzar(individuo_2)
 
             self.individuos.append(hijo)
             

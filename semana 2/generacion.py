@@ -13,10 +13,8 @@ class Generacion :
         self.poblacion.torneo(fitness, coeficiente_torneo)
         self.poblacion.cruce(coeficiente_cruce)
         self.poblacion.mutacion(coeficiente_mutacion)
-        self.poblacion.ordenar_por_fitness(fitness)
 
         self.num_ronda += 1
-
 
 
     def traza(self) :
