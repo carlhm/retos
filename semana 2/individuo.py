@@ -51,10 +51,8 @@ class Individuo :
         array    = list(self.genoma)
         posicion = random.randint(0, len(self.genoma)-1)
 
-        if array[posicion] == 'A' :
-            array[posicion] = 'B'
-        else :
-            array[posicion] = 'A'
+        choice          = self.choice.replace(array[posicion], '')
+        array[posicion] = random.choice(choice)
 
         self.genoma = "".join(array)
 
