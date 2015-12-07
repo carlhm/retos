@@ -1,63 +1,63 @@
-import random, string
+import random
+import string
 
 class Individuo :
 
-    def __init__ (self, genes, genoma = '', choice = 'AB') :
+    def __init__(self, num_genes, genoma = '', choice = 'AB') :
 
-        if genes > len(genoma) :
-            self.genoma = ''.join([random.choice(choice) for _ in range(genes)])
+        if num_genes > len(genoma) :
+            self.genoma = [random.choice(choice) for _ in range(num_genes)]
         else :
             self.genoma = genoma
 
         self.choice = choice
         
 
-    def obtPares (self) :
-        pair = 0
+    def obtPares(self) :
+        pair   = 0
+        genoma = ''.join(self.genoma)
 
-        if len(self.genoma) < 2 :
+        if len(genoma) < 2 :
             return pair
 
-        for (i, gen) in enumerate(self.genoma) :
+        for (i, gen) in enumerate(genoma) :
             if gen == 'B' :
                 continue
 
-            sub_genoma = self.genoma[(i + 1):]
-            sub_genoma = sub_genoma.replace('A', '')
-
-            pair += len(sub_genoma)
+            sub_genoma = genoma[(i + 1):]
+            pair      += sub_genoma.count('B')
 
         return pair
 
 
-    def cruzar (self, pareja) :
-        genoma_hijo = ''
+    def cruzar(self, pareja) :
         genoma_1    = self.genoma
         genoma_2    = pareja.genoma
+        genoma_hijo = list(genoma_1)
 
         for (i, gen) in enumerate(self.genoma) :
             if genoma_1[i] == genoma_2[i] :
-                genoma_hijo += genoma_1[i]
-            else :
-                choice       = ''+ genoma_1[i] + genoma_2[i] +''
-                genoma_hijo += random.choice(choice)
+                continue
+                
+            choice         = genoma_1[i] + genoma_2[i]
+            genoma_hijo[i] = random.choice(choice)
 
         hijo = Individuo(len(self.genoma), genoma_hijo)
 
         return hijo
 
 
-    def mutar (self) :
-        array    = list(self.genoma)
-        posicion = random.randint(0, len(self.genoma)-1)
+    def mutar(self) :
+        genoma   = self.genoma
+        posicion = random.randint(0, len(genoma)-1)
 
-        choice          = self.choice.replace(array[posicion], '')
-        array[posicion] = random.choice(choice)
+        choice           = self.choice.replace(genoma[posicion], '')
+        genoma[posicion] = random.choice(choice)
 
-        self.genoma = "".join(array)
+        self.genoma = genoma
 
 
-    def fitness (self, k) :
+    def fitness(self, k) :
         pair = self.obtPares()
 
         fitness = k - pair

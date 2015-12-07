@@ -2,13 +2,16 @@ from poblacion import Poblacion
 
 class Generacion :
 
-    def __init__ (self, poblacion) :
+    def __init__(self, poblacion) :
 
         self.poblacion = poblacion
         self.num_ronda = 0
 
 
-    def ronda (self, fitness, coeficiente_cruce = 0.5, coeficiente_mutacion = 0.5, coeficiente_torneo = 0.5) :
+    def ronda(self, fitness, 
+                coeficiente_cruce    = 0.5, 
+                coeficiente_mutacion = 0.5, 
+                coeficiente_torneo   = 0.5) :
 
         self.poblacion.torneo(fitness, coeficiente_torneo)
         self.poblacion.cruce(coeficiente_cruce)
@@ -18,7 +21,11 @@ class Generacion :
 
 
     def traza(self) :
-
+        
         campeon = self.poblacion.obt_campeon()
 
-        print 'G.'+ str(self.num_ronda) +" > "+ campeon.genoma +" ("+ str(campeon.obtPares()) +")"
+        traza   = 'G.'  + str(self.num_ronda)
+        traza  += ' > ' + "".join(campeon.genoma)
+        traza  += ' ('  + str(campeon.obtPares())   + ")"
+
+        print traza

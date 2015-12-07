@@ -1,4 +1,6 @@
-import string, sys
+import string
+import sys
+
 from datetime   import datetime
 from poblacion  import Poblacion
 from generacion import Generacion
@@ -10,12 +12,12 @@ except IndexError :
     n = 0
 else :
     n = int(sys.argv[1])
-try :
-    sys.argv[2]
-except IndexError :
-    k = -1
-else :
-    k = int(sys.argv[2])
+    try :
+        sys.argv[2]
+    except IndexError :
+        k = -1
+    else :
+        k = int(sys.argv[2])
 
 # Condiciones iniciales
 if k >= 0 and k <= ((n*(n-1))/2) and n >= 2 and n <= 50 :
