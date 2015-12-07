@@ -1,0 +1,37 @@
+File: index.py
+Type Name                                                                           Complexity 
+-----------------------------------------------------------------------------------------
+X    index.py                                                                       4          
+
+File: generacion.py
+Type Name                                                                           Complexity 
+----------------------------------------------------------------------------------------------
+X    generacion.py                                                                  1          
+C    Generacion                                                                     1          
+M    Generacion.__init__                                                            1          
+M    Generacion.ronda                                                               1          
+M    Generacion.traza                                                               1          
+
+File: poblacion.py
+Type Name                                                                          Complexity 
+---------------------------------------------------------------------------------------------
+M    Poblacion.torneo                                                              3          
+M    Poblacion.__init__                                                            2          
+M    Poblacion.cruce                                                               2          
+M    Poblacion.mutacion                                                            2          
+M    Poblacion.campeon                                                             2          
+X    poblacion.py                                                                  1          
+C    Poblacion                                                                     1          
+M    Poblacion.ordenar_por_fitness                                                 1          
+M    Poblacion.obt_campeon                                                         1          
+
+File: individuo.py
+Type Name                                                                          Complexity 
+---------------------------------------------------------------------------------------------
+M    Individuo.obtPares                                                            4          
+M    Individuo.__init__                                                            3          
+M    Individuo.cruzar                                                              3          
+M    Individuo.fitness                                                             2          
+X    individuo.py                                                                  1          
+C    Individuo                                                                     1          
+M    Individuo.mutar                                                               1          
