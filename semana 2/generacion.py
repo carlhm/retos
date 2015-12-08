@@ -9,9 +9,9 @@ class Generacion :
 
 
     def ronda(self, fitness, 
-                coeficiente_cruce    = 0.5, 
-                coeficiente_mutacion = 0.5, 
-                coeficiente_torneo   = 0.5) :
+                coeficiente_cruce=0.5, 
+                coeficiente_mutacion=0.5, 
+                coeficiente_torneo=0.5) :
 
         self.poblacion.torneo(fitness, coeficiente_torneo)
         self.poblacion.cruce(coeficiente_cruce)
@@ -23,9 +23,8 @@ class Generacion :
     def traza(self) :
         
         campeon = self.poblacion.obt_campeon()
-
-        traza   = 'G.'  + str(self.num_ronda)
-        traza  += ' > ' + "".join(campeon.genoma)
-        traza  += ' ('  + str(campeon.obtPares())   + ")"
-
+        # generacion, genoma, pares
+        traza = "G.%i > %s (%i)" % (self.num_ronda,
+                                    campeon.to_string(),
+                                    campeon.obt_pares())
         print traza
