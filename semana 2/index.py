@@ -8,10 +8,10 @@ from poblacion import Poblacion
 from generacion import Generacion
 
 def limite_max_k(n, k) :
-    i_genoma = ''.join([random.choice('A') for _ in range(int(n/2))])
+    i_genoma = 'A'*(int(n/2))
     if (n % 2) == 1 :
         n += 1
-    f_genoma = ''.join([random.choice('B') for _ in range(int(n/2))])
+    f_genoma = 'B'*(int(n/2))
     genoma = list('%s%s' % (i_genoma, f_genoma))
     individuo = Individuo(genoma)
 
