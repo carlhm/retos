@@ -1,9 +1,21 @@
 import string
+import random
 import sys
 
 from datetime import datetime
+from individuo import Individuo
 from poblacion import Poblacion
 from generacion import Generacion
+
+def limite_max_k(n, k) :
+    i_genoma = ''.join([random.choice('A') for _ in range(int(n/2))])
+    if (n % 2) == 1 :
+        n += 1
+    f_genoma = ''.join([random.choice('B') for _ in range(int(n/2))])
+    genoma = list('%s%s' % (i_genoma, f_genoma))
+    individuo = Individuo(genoma)
+
+    return individuo.obt_pares()
 
 # Entrada definida
 try :
@@ -15,8 +27,10 @@ try :
 except :
     exit()
 
+k_maxima = limite_max_k(n, k)
+
 # Condiciones iniciales
-if k >= 0 and k <= ((n*(n-1))/2) and n >= 2 and n <= 50 :
+if k >= 0 and k <= ((n*(n-1))/2) and k <= k_maxima and n >= 2 and n <= 50 :
 
     individuos = int(n**1.65)
     p = Poblacion(individuos, n)
