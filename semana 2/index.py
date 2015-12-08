@@ -8,15 +8,11 @@ from generacion import Generacion
 # Entrada definida
 try :
     n = int(sys.argv[1])
-except IndexError :
-    exit()
-except ValueError :
+except :
     exit()
 try :
     k = int(sys.argv[2])
-except IndexError :
-    exit()
-except ValueError :
+except :
     exit()
 
 # Condiciones iniciales
@@ -35,5 +31,4 @@ if k >= 0 and k <= ((n*(n-1))/2) and n >= 2 and n <= 50 :
     g.traza()
     # mostrar el tiempo de ejecicion
     h_fin = datetime.now()
-
     print "Tiempo: %f seg" % ((h_fin - h_inicio).total_seconds())
