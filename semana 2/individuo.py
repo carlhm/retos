@@ -15,14 +15,15 @@ class Individuo :
     def cruzar(self, pareja) :
         genoma_1 = self.genoma
         genoma_2 = pareja.genoma
-        genoma_hijo = list(genoma_1)
-        # forma genoma en base a discrepancias, gen a gen
+        genoma_hijo = []
+        # forma genoma en base a parecidos y discrepancias, gen a gen
         for (i, gen) in enumerate(self.genoma) :
             if genoma_1[i] == genoma_2[i] :
-                continue
-            # Azar entre gen de cada individuo
-            choice = genoma_1[i] + genoma_2[i]
-            genoma_hijo[i] = random.choice(choice)
+                genoma_hijo.append(genoma_1[i])
+            else :
+                # Azar entre gen de cada individuo
+                choice = genoma_1[i] + genoma_2[i]
+                genoma_hijo.append(random.choice(choice))
 
         hijo = Individuo(genoma_hijo)
 
