@@ -1,11 +1,11 @@
 File: index.py
-Type Name                                                                           Complexity 
+Type Name                                                                          Complexity 
 ----------------------------------------------------------------------------------------------
 X    index.py                                                                       4
 F    limite_max_k                                                                   2
 
 File: generacion.py
-Type Name                                                                           Complexity 
+Type Name                                                                          Complexity 
 ----------------------------------------------------------------------------------------------
 X    generacion.py                                                                  1
 C    Generacion                                                                     1
