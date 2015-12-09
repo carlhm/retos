@@ -21,10 +21,5 @@ class Generacion :
 
 
     def traza(self) :
-        
         campeon = self.poblacion.obt_campeon()
-        # generacion, genoma, pares
-        traza = "G.%i > %s (%i)" % (self.num_ronda,
-                                    campeon.to_string(),
-                                    campeon.obt_pares())
-        print traza
+        return "G.%i > %s" % (self.num_ronda, campeon.traza())

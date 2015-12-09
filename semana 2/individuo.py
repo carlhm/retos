@@ -69,3 +69,6 @@ class Individuo :
     def to_string(self) :
         return "".join(self.genoma)
 
+    def traza(self) :
+        return "%s (%i)" % (self.to_string(), self.obt_pares())
+
