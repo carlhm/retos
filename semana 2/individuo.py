@@ -72,3 +72,15 @@ class Individuo :
     def traza(self) :
         return "%s (%i)" % (self.to_string(), self.obt_pares())
 
+    @staticmethod
+    def max_k(n) :
+        # A0,...,A(n/2),B(1+n/2)...Bn
+        izqda_genoma = 'A'*(int(n/2))
+        if (n % 2) == 1 :
+            n += 1
+        drcha_genoma = 'B'*(int(n/2))
+        genoma = list('%s%s' % (izqda_genoma, drcha_genoma))
+        individuo = Individuo(genoma)
+
+        return individuo.obt_pares()
+
