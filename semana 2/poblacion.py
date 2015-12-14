@@ -43,7 +43,10 @@ class Poblacion :
             # sobrevive individuo si esta en el %
             elegir = random.random()
             if elegir < coeficiente :
-                lista.append(self.individuos[i])
+                # agregamos duplicado a la nueva lista
+                genoma = self.individuos[i].genoma
+                clon = Individuo(list(genoma))
+                lista.append(clon)
             # si son pocos vuelta a empezar la lista                  
             i = (0, i+1)[i < limite - 1]
 

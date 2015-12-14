@@ -1,5 +1,6 @@
 import random
 import string
+import math
 
 class Individuo :
 
@@ -41,11 +42,8 @@ class Individuo :
 
     def fitness(self, k) :
         pair = self.obt_pares()
-
-        fitness = k - pair
-        # valores absolutos, n y -n estan igual de cerca de 0
-        if fitness < 0 :
-            fitness *= -1
+        # distancia entre pares del genoma y el k objetivo
+        fitness = math.sqrt((k - pair)**2)
 
         return fitness
 
@@ -74,7 +72,7 @@ class Individuo :
 
     @staticmethod
     def max_k(n) :
-        # A0,...,A(n/2),B(1+n/2)...Bn
+        # A0,...,A(n/2),B(1+n/2),...,Bn
         izqda_genoma = 'A'*(int(n/2))
         if (n % 2) == 1 :
             n += 1
