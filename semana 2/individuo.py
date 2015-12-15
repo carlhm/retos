@@ -49,11 +49,10 @@ class Individuo :
 
     def obt_pares(self) :
         pair = 0
-        genoma = self.to_string()
+        genoma = self.genoma
 
         if len(genoma) < 2 :
             return pair
-
         for (i, gen) in enumerate(genoma) :
             # por cada A
             if gen == 'B' :
@@ -64,11 +63,14 @@ class Individuo :
 
         return pair
 
-    def to_string(self) :
-        return "".join(self.genoma)
+    def copia(self) :
+        return Individuo(list(self.genoma))
 
     def traza(self) :
-        return "%s (%i)" % (self.to_string(), self.obt_pares())
+        return "%s (%i)" % (self, self.obt_pares())
+
+    def __str__(self) :
+        return "".join(self.genoma)
 
     @staticmethod
     def max_k(n) :
