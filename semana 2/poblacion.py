@@ -44,8 +44,7 @@ class Poblacion :
             elegir = random.random()
             if elegir < coeficiente :
                 # agregamos duplicado a la nueva lista
-                genoma = self.individuos[i].genoma
-                clon = Individuo(list(genoma))
+                clon = self.individuos[i].copia()
                 lista.append(clon)
             # si son pocos vuelta a empezar la lista                  
             i = (0, i+1)[i < limite - 1]
