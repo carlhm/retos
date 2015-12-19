@@ -16,9 +16,9 @@ class Poblacion :
         
         for i in range(conteo) :
             # elegimos al azar que parejas cruzar
-            posicion = random.randint(0, limite - 1)
+            posicion = random.randrange(limite)
             individuo_1 = self.individuos[posicion]
-            posicion = random.randint(0, limite - 1)
+            posicion = random.randrange(limite)
             individuo_2 = self.individuos[posicion]
             # obtenemos descendiente, incrementeando inviduos
             hijo = individuo_1.cruzar(individuo_2)
@@ -29,7 +29,7 @@ class Poblacion :
         conteo = int(limite * coeficiente)
         # mutamos n individuos aleatorios segun el coeficiente
         for i in range(conteo) :
-            posicion = random.randint(0, limite - 1)
+            posicion = random.randrange(limite)
             self.individuos[posicion].mutar()
 
     def torneo(self, fitness, coeficiente=0.5) :

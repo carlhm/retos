@@ -1,9 +1,10 @@
+
 import random
 import string
 import math
 
 class Individuo :
-
+    
     def __init__(self, genes, choice = 'AB') :
         # crea gen nuevo o asigna uno dado
         if isinstance(genes, int) :
@@ -12,6 +13,7 @@ class Individuo :
             self.genoma = genes
 
         self.choice = choice
+        self.longitud = len(self.genoma)
 
     def cruzar(self, pareja) :
         genoma_1 = self.genoma
@@ -32,42 +34,54 @@ class Individuo :
 
     def mutar(self) :
         # variamos solo un caracter del genoma
-        genoma   = self.genoma
-        posicion = random.randint(0, len(genoma)-1)
+        genoma = self.genoma
+        posicion = random.randrange(self.longitud)
         # eliminamos anterior gen de los posibles
         choice = self.choice.replace(genoma[posicion], '')
         genoma[posicion] = random.choice(choice)
 
-        self.genoma = genoma
-
     def fitness(self, k) :
-        pair = self.obt_pares()
-        # distancia entre pares del genoma y el k objetivo
-        fitness = math.sqrt((k - pair)**2)
+        pares = self.obt_pares()
+        # distancia entre dos puntos (pares, k)
+        fitness = math.sqrt((k - pares)**2)
 
         return fitness
 
     def obt_pares(self) :
-        pair = 0
+        pares = 0
         genoma = self.genoma
 
-        if len(genoma) < 2 :
-            return pair
+        if self.longitud < 2 :
+            return pares
         for (i, gen) in enumerate(genoma) :
             # por cada A
             if gen == 'B' :
                 continue
             # cuenta numero de B a continuacion
             sub_genoma = genoma[(i + 1):]
-            pair += sub_genoma.count('B')
+            pares += sub_genoma.count('B')
 
-        return pair
+        return pares
+
+    def obt_genoma_ruido(self) :
+        ruido = 0
+        gen_cambio = self.genoma[0]
+
+        for gen in self.genoma :
+            if gen == gen_cambio :
+                continue
+            gen_cambio = gen
+            ruido += 1
+        
+        return float(ruido)/float(self.longitud)
 
     def copia(self) :
         return Individuo(list(self.genoma))
 
     def traza(self) :
-        return "%s (%i)" % (self, self.obt_pares())
+        return "P:%i R:%.3f > %s" % (self.obt_pares(), 
+                                     self.obt_genoma_ruido(), 
+                                     self)
 
     def __str__(self) :
         return "".join(self.genoma)
@@ -83,4 +97,3 @@ class Individuo :
         individuo = Individuo(genoma)
 
         return individuo.obt_pares()
-
